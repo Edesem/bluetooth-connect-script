@@ -11,11 +11,14 @@ Requires dmenu, however if you wanted to use something else like rofi I assume i
 
 
 ### Install 
-
 ```
 sudo curl -sL "https://raw.githubusercontent.com/Edesem/bluetooth-connect-script/main/bcn" -o /usr/local/bin/bcn
 sudo chmod +x /usr/local/bin/bcn
 ```
+
+### Usage
+Open dmenu and type bcn, it will then show a list of previously connected bluetooth devices and hitting enter with attempt to connect to that bluetooth device.
+
 ### Update
 Just redo the curl command
 
