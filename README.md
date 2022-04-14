@@ -26,4 +26,4 @@ Just redo the curl command
 `sudo rm /usr/local/bin/bcn`
 
 ### License
-[GLP 3.0](https://raw.githubusercontent.com/Edesem/bluetooth-connect-script/main/LICENSE)
+[GPL 3.0](https://raw.githubusercontent.com/Edesem/bluetooth-connect-script/main/LICENSE)
