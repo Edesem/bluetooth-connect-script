@@ -3,13 +3,14 @@
 #bcn, Bluetooth Connect
 
 select=$(bluetoothctl devices | awk {'print $3'} | dmenu -l 10 -fn Monospace-15)
-MAC=$(bluetoothctl devices | grep $select | awk {'print $2'})
+MAC=$(bluetoothctl devices | grep $select | awk {'print $2'}) 
+	[ -z $MAC ] && MAC=NoDeviceFound # Prevents accidental disconnect error
 
 connect=$(bluetoothctl info $MAC | grep Connected: | awk '{print $2}')
 if [[ $connect = no ]]; then 
 	notify-send "Attempting to connect to $select"
 	bluetoothctl connect $MAC || notify-send "Failed to Connect"
-else
+elif [[ $connect = yes ]]; then
 	notify-send "Attempting to disconnect $select"
 	bluetoothctl disconnect $MAC 
 fi
