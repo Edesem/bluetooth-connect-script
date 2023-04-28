@@ -2,9 +2,17 @@
 
 #bcn, Bluetooth Connect
 
-select=$(bluetoothctl devices | awk {'print $3'} | dmenu -l 10 -fn Monospace-15)
-MAC=$(bluetoothctl devices | grep $select | awk {'print $2'}) 
-	[ -z $MAC ] && MAC=NoDeviceFound # Prevents accidental disconnect error
+
+device_amount=$(bluetoothctl devices | wc -l)
+
+if [[ $device_amount = 1 ]]; then
+	MAC=$(bluetoothctl devices | awk {'print $2'})
+		[ -z $MAC ] && MAC=NoDeviceFound # Prevents accidental disconnect error
+else
+	select=$(bluetoothctl devices | awk {'print $3'} | dmenu -l 10 -fn Monospace-15)
+	MAC=$(bluetoothctl devices | grep $select | awk {'print $2'}) 
+		[ -z $MAC ] && MAC=NoDeviceFound # Prevents accidental disconnect error
+fi
 
 connect=$(bluetoothctl info $MAC | grep Connected: | awk '{print $2}')
 if [[ $connect = no ]]; then 
